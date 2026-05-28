@@ -57,30 +57,44 @@ export default function Itinerario() {
         ease: "none"
       });
 
-      // Animación de las tarjetas
-      gsap.from('.js-timeline-node', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 60%"
-        },
-        opacity: 0,
-        x: (i) => i % 2 === 0 ? -50 : 50,
-        duration: 1,
-        stagger: 0.3,
-        ease: "power4.out"
+      // Animación de las tarjetas individuales (Entran y salen al scrollear)
+      const nodes = gsap.utils.toArray('.js-timeline-node');
+      
+      nodes.forEach((node, i) => {
+        // En escritorio, las pares entran desde la izquierda (-60) y las impares desde la derecha (60)
+        const xDirection = i % 2 === 0 ? -60 : 60;
+
+        gsap.fromTo(node, 
+          { 
+            opacity: 0, 
+            x: xDirection 
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: node,
+              start: "top 85%",
+              end: "top 30%",
+              toggleActions: "play reverse restart reverse",
+            }
+          }
+        );
       });
+
     }, containerRef);
     return () => ctx.revert();
   }, []);
-// ... (mantiene tus imports, planes y useEffect exactamente iguales)
 
   return (
     <section ref={containerRef} className="relative min-h-screen py-20 px-6 md:px-20 overflow-hidden flex flex-col items-center">
       
-    {/* FONDO */}
+      {/* FONDO */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={backgroundItinerario} // <--- Usando la variable
+          src={backgroundItinerario} 
           alt="Sunset" 
           className="w-full h-full object-cover" 
         />
@@ -107,44 +121,48 @@ export default function Itinerario() {
         ></div>
 
         <div className="space-y-12 md:space-y-20">
-          {planes.map((plan, index) => (
-            <div 
-              key={index} 
-              className="js-timeline-node relative flex items-start w-full pl-12 md:pl-0 md:justify-between"
-            >
-              
-              {/* Punto en el timeline */}
-              <div className="absolute left-4 -translate-x-1/2 mt-4 w-3 h-3 md:w-4 md:h-4 rounded-full bg-white border-2 md:border-4 border-[#72D2C1] shadow-[0_0_15px_rgba(114,210,193,0.8)]"></div>
+          {planes.map((plan, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <div 
+                key={index} 
+                className={`js-timeline-node relative flex items-start w-full pl-12 md:pl-0 
+                  ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+              >
+                
+                {/* Punto en el timeline */}
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 mt-4 w-3 h-3 md:w-4 md:h-4 rounded-full bg-white border-2 md:border-4 border-[#72D2C1] shadow-[0_0_15px_rgba(114,210,193,0.8)]"></div>
 
-              {/* Contenido (Forzamos alineación a la izquierda en móvil) */}
-              <div className="w-full md:w-[45%]">
-                <div className="bg-white/10 backdrop-blur-xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl relative">
-                  
-                  <span className="text-[#72D2C1] font-bold tracking-widest text-[10px] md:text-xs uppercase block mb-1">
-                    {plan.dia}
-                  </span>
-                  
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                    {plan.titulo}
-                  </h3>
-                  
-                  <p className="text-slate-200 text-xs md:text-sm italic mb-4 leading-relaxed">
-                    {plan.desc}
-                  </p>
-
-                  <div className="pt-3 border-t border-white/10">
-                    <p className="text-[#72D2C1] font-serif italic text-sm md:text-lg leading-snug">
-                      "{plan.frase}"
+                {/* Contenido (Alineación dinámica para hacer el zigzag en compu) */}
+                <div className="w-full md:w-[45%]">
+                  <div className="bg-white/10 backdrop-blur-xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl relative">
+                    
+                    <span className="text-[#72D2C1] font-bold tracking-widest text-[10px] md:text-xs uppercase block mb-1">
+                      {plan.dia}
+                    </span>
+                    
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                      {plan.titulo}
+                    </h3>
+                    
+                    <p className="text-slate-200 text-xs md:text-sm italic mb-4 leading-relaxed">
+                      {plan.desc}
                     </p>
+
+                    <div className="pt-3 border-t border-white/10">
+                      <p className="text-[#72D2C1] font-serif italic text-sm md:text-lg leading-snug">
+                        "{plan.frase}"
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Espacio balanceador (Solo en escritorio) */}
-              <div className="hidden md:block md:w-[45%]"></div>
-              
-            </div>
-          ))}
+                {/* Espacio balanceador (Solo en escritorio para mantener el equilibrio) */}
+                <div className="hidden md:block md:w-[45%]"></div>
+                
+              </div>
+            );
+          })}
         </div>
       </div>
 
