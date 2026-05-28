@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import backgroundMonterrey from '../assets/background-monterrey.png';
 
 export default function Monterrey() {
   const [showModal, setShowModal] = useState(false);
@@ -34,9 +35,10 @@ export default function Monterrey() {
       ref={containerRef}
       className="section-viewport bg-[#FAF9F6] flex flex-col justify-center px-6 md:px-20 border-t border-slate-200/60 relative z-10 overflow-hidden"
     >
+    {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <img 
-          src="/src/assets/background-monterrey.png" 
+          src={backgroundMonterrey} // <--- Solo cambia esto
           alt="Monterrey takeoff" 
           className="w-full h-full object-cover object-center opacity-40 md:opacity-100"
         />

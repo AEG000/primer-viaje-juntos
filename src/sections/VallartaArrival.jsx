@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import backgroundPvrArrival from '../assets/background-pvr-arrival.png';
 
 export default function VallartaArrival() {
   const sectionRef = useRef(null);
@@ -77,10 +78,10 @@ export default function VallartaArrival() {
       className="section-viewport bg-[#FAF9F6] flex items-center justify-center relative overflow-hidden border-t border-slate-200/60"
     >
       
-      {/* CAPA DE FONDO */}
+    {/* CAPA DE FONDO */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <img 
-          src="/src/assets/background-pvr-arrival.png" 
+          src={backgroundPvrArrival} // <--- Solo cambia esto
           alt="Puerto Vallarta aerial view" 
           className="w-full h-full object-cover object-center"
         />

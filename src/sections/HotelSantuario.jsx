@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import backgroundHotel from '../assets/background-hotel.png';
 
 export default function HotelSantuario() {
   const sectionRef = useRef(null);
@@ -25,17 +26,17 @@ export default function HotelSantuario() {
       className="section-viewport bg-black flex items-center justify-end relative overflow-hidden"
     >
       
-      {/* CAPA DE FONDO: Imagen Full Viewport */}
+    {/* CAPA DE FONDO: Imagen Full Viewport */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/src/assets/background-hotel.png" 
+          src={backgroundHotel} // <--- Cambiado a la variable
           alt="Gran Venetian Master Suite" 
-          className="w-full h-full object-cover object-center "
+          className="w-full h-full object-cover object-center"
         />
         {/* Degradado para dar contraste al texto izquierdo */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-10"></div>
       </div>
-
+      
       {/* CONTENEDOR DE TEXTO: A la izquierda y con espacio para que no se corte */}
       <div className="relative z-20 w-full max-w-xl px-8 md:px-20 text-left">
         

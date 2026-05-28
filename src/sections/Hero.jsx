@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Countdown from '../components/Countdown';
+import backgroundHero from '../assets/background-hero.png';
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -38,14 +39,14 @@ export default function Hero() {
       className="section-viewport flex items-center justify-center md:justify-start px-6 md:px-20 relative text-center md:text-left"
     >
 
-      {/* BACKGROUND */}
+{/* BACKGROUND */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <img
-          src="/src/assets/background-hero.png"
+          src={backgroundHero} // 2. Ahora usas la variable entre llaves
           alt="Coastal background"
           className="w-full h-full object-cover object-bottom"
         />
-        {/* Overlay extra en móvil para asegurar que el texto sea legible sobre cualquier foto */}
+        {/* Overlay extra en móvil */}
         <div className="absolute inset-0 bg-black/20 md:hidden"></div>
       </div>
 

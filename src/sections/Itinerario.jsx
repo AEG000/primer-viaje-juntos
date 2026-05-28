@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import backgroundItinerario from '../assets/background-itinerario.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,9 +77,13 @@ export default function Itinerario() {
   return (
     <section ref={containerRef} className="relative min-h-screen py-20 px-6 md:px-20 overflow-hidden flex flex-col items-center">
       
-      {/* FONDO */}
+    {/* FONDO */}
       <div className="absolute inset-0 z-0">
-        <img src="/src/assets/background-itinerario.jpg" alt="Sunset" className="w-full h-full object-cover" />
+        <img 
+          src={backgroundItinerario} // <--- Usando la variable
+          alt="Sunset" 
+          className="w-full h-full object-cover" 
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[1px]"></div>
       </div>
 
