@@ -333,14 +333,14 @@ export default function NetflixChiqui() {
             
             {/* Contenedor del Iframe responsivo 16:9 */}
             <div className="relative z-10 w-full h-full">
-              <iframe 
-                src="https://player.vimeo.com/video/1196543815?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=1" 
-                className="absolute top-0 left-0 w-full h-full"
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                title={activeItem.title}
-              />
+            <iframe 
+            src="https://player.vimeo.com/video/1196543815?autoplay=1&title=0&byline=0&portrait=0&transparent=0&dnt=1" 
+            className="absolute top-0 left-0 w-full h-full"
+            frameBorder="0" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowFullScreen
+            title={activeItem.title}
+            />
             </div>
           </div>
         </div>
