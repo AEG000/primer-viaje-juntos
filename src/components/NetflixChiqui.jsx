@@ -124,7 +124,7 @@ export default function NetflixChiqui() {
               CHIQUIFLIX
             </h1>
             <p className="text-zinc-400 text-sm md:text-base tracking-wide font-light">
-              ¿Estás lisao para nuestra cartelera especial?
+              ¿Estás lista para nuestra cartelera especial?
             </p>
             <button 
               onClick={iniciarExperiencia}
@@ -252,7 +252,7 @@ export default function NetflixChiqui() {
       <style>{`.scrollbar-hidden::-webkit-scrollbar { display: none; } .scrollbar-hidden { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
 
       {/* FILA 1: TOP 5 */}
-      <section className="relative z-20 pl-12 md:pl-20 pr-4 pb-4 -mt-14 md:-mt-20">
+      <section className="relative z-20 pl-12 md:pl-20 pr-4 pb-4 mt-4 md:-mt-20">
         <h3 className="text-base md:text-lg font-bold tracking-wide text-slate-200 mb-1 pl-4 drop-shadow-md">
           Las 5 series más vistas por nosotros esta semana
         </h3>
